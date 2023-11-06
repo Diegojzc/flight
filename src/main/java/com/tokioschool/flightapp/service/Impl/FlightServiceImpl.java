@@ -22,6 +22,8 @@ public class FlightServiceImpl implements FlightService {
     private final FlightRepository flightRepository;
     private final ModelMapper modelMapper;
     private AirportRepository airportRepository;
+
+
     @Override
     public List<FlightDTO> getFlights() {
         List<Flight> flights= flightRepository.findAll();
@@ -58,7 +60,9 @@ public class FlightServiceImpl implements FlightService {
     }
 
     private Airport getAirport(String acronym) {
-        return  airportRepository.findByAcromin(acronym)
+
+        return (Airport) airportRepository.findByAcronym(acronym)
+
                 .orElseThrow(()->new IllegalArgumentException("Flight witn id%s not found"
                         .formatted(acronym)));
     }

@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface AirportRepository extends JpaRepository<Airport,String> {
 
 
-    Optional<Airport> findByAcromin(String acronym);
+    Optional<Object> findByAcronym(String acronym);
 }

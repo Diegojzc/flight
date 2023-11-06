@@ -6,46 +6,14 @@
 
 <body>
 
-<nav th:replace="~{flight/fragments/nav :: nav}"></nav>
+<nav th:replace="~{flight/fragments/nav}"></nav>
 
 <div class="container">
     <div class="row py-5">
         <h1 class="border-botton"> Flight</h1>
     </div>
-    <div class="album py-5">
-        <div class="container">
-            <div class="row py-5 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col" th:each="flight : ${flights}">
-                    <div class="card shadow-sm">
-
-                        <img th:if="${flight.image == null}" class="img-fluid"
-                             th:src="@{/images/flight-dafault.jpg}"/>
-
-                        <div class="card-body">
-                            <p class="card-text"><strong th:text="${flight.number}"></strong></p>
-
-                            <p class="card-text">
-                                <span th:text="${flight.departureAcronym}"></span>
-                                <span> &nbsp;:-&nbsp;</span>
-                                <span th:text="${flight.departure.arrivalAcronym}"></span>
-
-                            </p>
-                            <p class="card-text">
-                                <span th:text="${#temporals.format(flight.departureTime, 'dd-MM-yyyy HH:mm')}"></span>
-
-                            </p>
-                            <p class="card-text">
-                                <span th:text="${flight.occupancy}"></span>/<span th:text="${flight.capacity}"></span>
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div th:replace="~{flight/fragments/scripts}"></div>
 </div>
-</body>>
+
+<div th:replace="~{flight/fragments/scripts}"></div>
+</body>
 </html>
