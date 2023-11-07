@@ -1,4 +1,4 @@
-package com.tokioschool.flightapp.service;
+package com.tokioschool.flightapp.flight.service;
 
 import com.tokioschool.flightapp.flight.dto.AirportDTO;
 

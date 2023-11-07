@@ -21,6 +21,9 @@
                         <img th:if="${flight.image == null}" class="img-fluid"
                              th:src="@{/images/flight-dafault.jpg}"/>
 
+                        <img th:if="$flight.image== null}" class="img-fluid"
+                        th:src="@{/flight/resources/{resourceId}(resourceId=${flight.image.resourceId})}"/>
+
                         <div class="card-body">
                             <p class="card-text"><strong th:text="${flight.number}"></strong></p>
 

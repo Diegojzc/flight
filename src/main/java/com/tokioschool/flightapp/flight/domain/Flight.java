@@ -50,4 +50,5 @@ public class Flight {
     @JoinColumn(name="flight_image_id", referencedColumnName = "id")
     private FlightImage image;
 
+
 }

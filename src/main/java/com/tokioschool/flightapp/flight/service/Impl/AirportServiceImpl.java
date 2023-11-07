@@ -1,9 +1,9 @@
-package com.tokioschool.flightapp.service.Impl;
+package com.tokioschool.flightapp.flight.service.Impl;
 
 import com.tokioschool.flightapp.flight.domain.Airport;
 import com.tokioschool.flightapp.flight.dto.AirportDTO;
 import com.tokioschool.flightapp.flight.repository.AirportRepository;
-import com.tokioschool.flightapp.service.AirportService;
+import com.tokioschool.flightapp.flight.service.AirportService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

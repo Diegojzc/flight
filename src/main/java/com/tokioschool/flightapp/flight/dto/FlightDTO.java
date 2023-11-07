@@ -30,7 +30,7 @@ public class FlightDTO {
     private Status status;
     private Integer capacity;
     private Integer ocuppancy;
-    private String image;
+    private ResourceDTO image;
 
     public enum Status{
         SCHEDULED,
