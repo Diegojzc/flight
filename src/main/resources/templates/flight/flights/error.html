@@ -1,0 +1,21 @@
+<!DOCTYPE htmL>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<heat th: replace="~{flight/fragments/head::header('Flight App')}"></heat>
+<body>
+<nav th:replace="~{flight/fragments/nav::nav}"></nav>
+<div class="constainer">
+    <div class="row py-5 mb-3">
+        <h1 class="border-botttom">Ooops, an error has ocurred </h1>
+    </div>
+    <div class="row py-5">
+        <dl>
+            <dt>Request URL:</dt>
+            <dd th:text="${error.getUrl()}">url</dd>
+            <dt>Exception message:</dt>
+            <dd th:text="${error.getException()}">exception</dd>
+        </dl>
+    </div>
+
+</div>
+<div th:insert="~{flight/fragments/scripts}"></div>
+</body>
