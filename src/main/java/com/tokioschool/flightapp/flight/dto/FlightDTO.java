@@ -22,6 +22,7 @@ import static com.tokioschool.flightapp.flight.domain.FlightStatus.SCHEDULED;
 @AllArgsConstructor
 
 public class FlightDTO {
+
     private Long id;
     private String number;
     private String departureAcromyn;

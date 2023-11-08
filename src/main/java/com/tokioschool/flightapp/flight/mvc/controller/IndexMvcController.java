@@ -12,4 +12,8 @@ public class IndexMvcController {
     public String getIndex(){
         return "flight/index";
     }
+    @GetMapping("/my-error")
+    public String getMyError(){
+        throw new RuntimeException("This is an error");
+    }
 }
