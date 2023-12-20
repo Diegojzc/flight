@@ -1,4 +1,4 @@
-package com.tokioschool.flightapp.flight.domain;
+package com.tokioschool.flightapp.flight.entities;
 import com.tokioschool.flightapp.core.repository.TsidGenerator;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
 
     @Id
     @TsidGenerator
@@ -30,6 +30,6 @@ public class User {
     @JoinTable(name ="users_with_roles",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name= "role_id"))
-    private Set<Role> roles;
+    private Set<RoleEntity> roles;
 
 }

@@ -28,7 +28,9 @@ public class FlightMvcDTO {
     @NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime dayTime;
-    @EnumValid(target= FlightDTO.Status.class, required = true)
+    @EnumValid(target= FlightDTO.Status.class,
+            message ="{validation.flight.status.invalid}",
+            required = true)
     private String status;
     @Positive
     @NotNull

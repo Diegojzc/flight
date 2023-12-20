@@ -1,4 +1,4 @@
-package com.tokioschool.flightapp.flight.domain;
+package com.tokioschool.flightapp.flight.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "flight_images")
-public class FlightImage {
+public class FlightImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,5 +27,5 @@ public class FlightImage {
 
     @OneToOne(fetch =FetchType.LAZY)
     @JoinColumn(name="flight_id")
-    private Flight flight;
+    private FlightEntity flight;
 }

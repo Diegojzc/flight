@@ -6,10 +6,7 @@ import com.tokioschool.flightapp.flight.mvc.dto.FlightBookingSessionDTO;
 import com.tokioschool.flightapp.flight.mvc.service.FlightBookingSessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -27,7 +24,7 @@ public class FlightBookingMvcController {
     public FlightBookingSessionDTO flightBookingSessionDTO(){
         return new FlightBookingSessionDTO();
     }
-    @GetMapping("/flight/blookings-add/{flightId}")
+    @GetMapping("/flight/bookings-add/{flightId}")
     public RedirectView addBooking(
             @PathVariable("flightId") Long flightId,
             @ModelAttribute(value="FlightBookingSessionDTO")
@@ -44,14 +41,14 @@ public class FlightBookingMvcController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("flightBookingsession",flightBookingSessionDTO);
+        modelAndView.addObject("flightBookingSession",flightBookingSessionDTO);
         modelAndView.addObject("flightMap",flightMap);
         modelAndView.setViewName("/flight/bookings/bookings-list");
 
         return  modelAndView;
     }
 
-    @GetMapping("/flight/booking-confirm")
+    @PostMapping("/flight/booking-confirm")
     public RedirectView confirmBooking(
         @ModelAttribute(value="FlightBookingSessionDTO")
         FlightBookingSessionDTO flightBookingSessionDTO,

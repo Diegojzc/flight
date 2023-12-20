@@ -14,5 +14,5 @@ public interface StoreService {
 
     Optional<ResourceContentDTO> findResource(UUID resourceId);
 
-    void deleteResource(UUID resorceId);
+    void deleteResource(UUID resourceId);
 }

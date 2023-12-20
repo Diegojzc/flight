@@ -1,4 +1,4 @@
-package com.tokioschool.flightapp.flight.domain;
+package com.tokioschool.flightapp.flight.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "flights")
-public class Flight {
+public class FlightEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,30 +25,30 @@ public class Flight {
 
     @ManyToOne
     @JoinColumn(name ="airport_departures_id", nullable = false)
-    private Airport departure;
+    private AirportEntity departure;
 
     @ManyToOne
     @JoinColumn(name ="airport_arrival_id", nullable = false)
-    private Airport arrival;
+    private AirportEntity arrival;
 
     @Column(name = "departure_time")
     private LocalDateTime departureTime;
 
     @Enumerated(EnumType.STRING)
-    private FlightStatus flightStatus;
+    private FlightStatusEntity flightStatus;
 
     @Column(nullable = false)
     private int capacity;
 
     @Column(nullable = false)
-    private int ocuppancy;
+    private int occupancy;
 
     @OneToMany(mappedBy = "flight",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<FlightBooking> booking;
+    private Set<FlightBookingEntity> booking;
 
     @OneToOne(mappedBy = "flight",cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="flight_image_id", referencedColumnName = "id")
-    private FlightImage image;
+    private FlightImageEntity image;
 
 
 }

@@ -1,9 +1,9 @@
 package com.tokioschool.flightapp.flight.service.Impl;
 
-import com.tokioschool.flightapp.flight.domain.Airport;
-import com.tokioschool.flightapp.flight.domain.Flight;
-import com.tokioschool.flightapp.flight.domain.FlightImage;
-import com.tokioschool.flightapp.flight.domain.FlightStatus;
+import com.tokioschool.flightapp.flight.entities.AirportEntity;
+import com.tokioschool.flightapp.flight.entities.FlightEntity;
+import com.tokioschool.flightapp.flight.entities.FlightImageEntity;
+import com.tokioschool.flightapp.flight.entities.FlightStatusEntity;
 import com.tokioschool.flightapp.flight.dto.FlightDTO;
 import com.tokioschool.flightapp.flight.mvc.dto.FlightMvcDTO;
 import com.tokioschool.flightapp.flight.repository.AirportRepository;
@@ -12,6 +12,7 @@ import com.tokioschool.flightapp.flight.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
@@ -29,9 +30,10 @@ public class FlightServiceImpl implements FlightService {
     private final FlightImageServiceImpl flightImageService;
 
 
+
     @Override
     public List<FlightDTO> getFlights() {
-        List<Flight> flights= flightRepository.findAll();
+        List<FlightEntity> flights= flightRepository.findAll();
         return flights.stream().map(flight-> modelMapper.map(flight,FlightDTO.class)).toList();
     }
 
@@ -44,17 +46,26 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public FlightDTO createdFlight(FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
-        Flight flight = createdOrEdit(new Flight(), flightMvcDTO, multipartFile);
+    public FlightDTO createFlight(FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
+        FlightEntity flight = createOrEdit(new FlightEntity(), flightMvcDTO, multipartFile);
+        return modelMapper.map(flight, FlightDTO.class);
+    }
+    @Override
+    public FlightDTO editFlight(FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
+        FlightEntity flight = flightRepository.findById(flightMvcDTO.getId())
+                .orElseThrow(()->new IllegalArgumentException("Flight witn id%s not found"
+                        .formatted(flightMvcDTO.getId())));
+        flight= createOrEdit(flight, flightMvcDTO, multipartFile);
         return modelMapper.map(flight, FlightDTO.class);
     }
 
-    private Flight createdOrEdit(Flight flight, FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
+    @Transactional
+    protected FlightEntity createOrEdit(FlightEntity flight, FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
 
-        Airport departure = getAirport(flightMvcDTO.getDeparture());
-        Airport arrival = getAirport(flightMvcDTO.getArrival());
+        AirportEntity departure = getAirport(flightMvcDTO.getDeparture());
+        AirportEntity arrival = getAirport(flightMvcDTO.getArrival());
 
-        FlightImage flightImage = flight.getImage();
+        FlightImageEntity flightImage = flight.getImage();
         if (!multipartFile.isEmpty()){
             flightImage= flightImageService.saveImage(multipartFile);
             flightImage.setFlight(flight);
@@ -63,7 +74,7 @@ public class FlightServiceImpl implements FlightService {
 
         flight.setCapacity(flightMvcDTO.getCapacity());
         flight.setNumber(flightMvcDTO.getNumber());
-        flight.setFlightStatus(FlightStatus.valueOf(flightMvcDTO.getStatus()));
+        flight.setFlightStatus(FlightStatusEntity.valueOf(flightMvcDTO.getStatus()));
         flight.setDeparture(departure);
         flight.setArrival(arrival);
         flight.setDepartureTime(flightMvcDTO.getDayTime());
@@ -71,27 +82,25 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.save(flight);
     }
 
-    private Airport getAirport(String acronym) {
+    private AirportEntity getAirport(String acronym) {
 
-        return (Airport) airportRepository.findByAcronym(acronym)
+        return (AirportEntity) airportRepository.findByAcronym(acronym)
 
                 .orElseThrow(()->new IllegalArgumentException("Flight witn id%s not found"
                         .formatted(acronym)));
     }
 
-    @Override
-    public FlightDTO editFlight(FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
-        Flight flight = flightRepository.findById(flightMvcDTO.getId())
-                .orElseThrow(()->new IllegalArgumentException("Flight witn id%s not found"
-                        .formatted(flightMvcDTO.getId())));
-        flight= createdOrEdit(flight, flightMvcDTO, multipartFile);
-        return modelMapper.map(flight, FlightDTO.class);
-    }
+
 
     @Override
     public Map<Long, FlightDTO> getFlightById(HashSet<Long> flightIds) {
         return flightRepository.findAllById(flightIds)
-                .stream().collect(Collectors.toMap(Flight::getId, flight -> modelMapper
+                .stream().collect(Collectors.toMap(FlightEntity::getId, flight -> modelMapper
                         .map(flight, FlightDTO.class)));
+    }
+
+    @Override
+    public FlightDTO getFlight(Long aLong) {
+        return null;
     }
 }

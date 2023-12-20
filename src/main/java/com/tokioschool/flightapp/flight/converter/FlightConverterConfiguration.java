@@ -1,8 +1,7 @@
 package com.tokioschool.flightapp.flight.converter;
 
-import com.tokioschool.flightapp.flight.domain.FlightImage;
+import com.tokioschool.flightapp.flight.entities.FlightImageEntity;
 import com.tokioschool.flightapp.flight.dto.ResourceDTO;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +16,7 @@ public class FlightConverterConfiguration {
     }
 
     private void configureFlightDTOConverter() {
-        modelMapper.map(FlightImage.class, ResourceDTO.class);
+        modelMapper.map(FlightImageEntity.class, ResourceDTO.class);
+
     }
 }

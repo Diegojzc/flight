@@ -1,8 +1,7 @@
-package com.tokioschool.flightapp.flight.domain;
+package com.tokioschool.flightapp.flight.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Setter
 @Getter
@@ -11,7 +10,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @NoArgsConstructor
 @Entity
 @Table(name = "roles")
-public class Role {
+public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

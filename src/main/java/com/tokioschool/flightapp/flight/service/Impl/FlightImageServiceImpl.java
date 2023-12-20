@@ -1,6 +1,6 @@
 package com.tokioschool.flightapp.flight.service.Impl;
 
-import com.tokioschool.flightapp.flight.domain.FlightImage;
+import com.tokioschool.flightapp.flight.entities.FlightImageEntity;
 import com.tokioschool.flightapp.flight.mvc.dto.FlightImageResourceDTO;
 import com.tokioschool.flightapp.flight.service.FlightImageService;
 import com.tokioschool.flightapp.store.StoreService;
@@ -16,15 +16,15 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FlightImageServiceImpl implements FlightImageService {
 
-  private StoreService storeService;
+  private final StoreService storeService;
 
     @Override
-    public FlightImage saveImage(MultipartFile multipartFile) {
+    public FlightImageEntity saveImage(MultipartFile multipartFile) {
 
         ResourceIdDTO resourceIdDTO = storeService.saveResource(multipartFile, "flight-app")
                 .orElseThrow(() -> new IllegalStateException("Resource not saved in store"));
 
-        return FlightImage.builder()
+        return FlightImageEntity.builder()
                 .contentType(multipartFile.getContentType())
                 .size((int) multipartFile.getSize())
                 .filename(multipartFile.getOriginalFilename())

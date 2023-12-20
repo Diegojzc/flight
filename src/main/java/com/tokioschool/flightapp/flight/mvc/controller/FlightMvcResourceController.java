@@ -41,4 +41,5 @@ public class FlightMvcResourceController {
                 return ResponseEntity.ok().headers(httpHeaders).body(flightImageResourceDTO.getContent());
     }
 
+
 }

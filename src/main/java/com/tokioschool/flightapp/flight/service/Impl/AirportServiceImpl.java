@@ -1,6 +1,6 @@
 package com.tokioschool.flightapp.flight.service.Impl;
 
-import com.tokioschool.flightapp.flight.domain.Airport;
+import com.tokioschool.flightapp.flight.entities.AirportEntity;
 import com.tokioschool.flightapp.flight.dto.AirportDTO;
 import com.tokioschool.flightapp.flight.repository.AirportRepository;
 import com.tokioschool.flightapp.flight.service.AirportService;
@@ -18,7 +18,7 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public List<AirportDTO> getAirports() {
-        List<Airport> airports = airportRepository.findAll();
+        List<AirportEntity> airports = airportRepository.findAll();
         return airports.stream().map(airport -> modelMapper.map(airport, AirportDTO.class)).toList();
     }
 }

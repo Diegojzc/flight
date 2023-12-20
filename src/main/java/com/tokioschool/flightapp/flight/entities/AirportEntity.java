@@ -1,4 +1,4 @@
-package com.tokioschool.flightapp.flight.domain;
+package com.tokioschool.flightapp.flight.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name="airports")
-public class Airport {
+public class AirportEntity {
 
     @Id
     @Column(name="id")
@@ -26,4 +26,6 @@ public class Airport {
     private BigDecimal lat;
     @Column(name ="longitude")
     private BigDecimal log;
+
+
 }

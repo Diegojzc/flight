@@ -31,7 +31,6 @@ public class FlightBookingSessionServiceImpl implements FlightBookingSessionServ
 
     @Override
     public FlightBookingDTO confirmFlightBookingSession(FlightBookingSessionDTO flightBookingSessionDTO) {
-
         return flightBookingService.bookFlight(flightBookingSessionDTO.getCurrentFlightId(), "fsfs");
 
 

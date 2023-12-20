@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      lang="es" xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{flight/fragments/head :: header(title='Flight App - flights')}"></head>
 
@@ -10,16 +10,16 @@
 
 <div class="container">
     <div class="row py-5">
-        <h1 class="border-botton"> Flight</h1>
+        <h1 class="border-bottom"> Flights</h1>
     </div>
     <div class="album py-5">
         <div class="container">
-            <div class="row py-5 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col" th:each="flight : ${flights}">
                     <div class="card shadow-sm">
 
                         <img th:if="${flight.image == null}" class="img-fluid"
-                             th:src="@{/images/flight-dafault.jpg}"/>
+                             th:src="@{/images/flight-default.jpg}"/>
 
                         <img th:if="$flight.image== null}" class="img-fluid"
                         th:src="@{/flight/resources/{resourceId}(resourceId=${flight.image.resourceId})}"/>
@@ -29,8 +29,8 @@
 
                             <p class="card-text">
                                 <span th:text="${flight.departureAcronym}"></span>
-                                <span> &nbsp;:-&nbsp;</span>
-                                <span th:text="${flight.departure.arrivalAcronym}"></span>
+                                <span> &nbsp;-&nbsp;&nbsp;</span>
+                                <span th:text="${flight.arrivalAcronym}"></span>
 
                             </p>
                             <p class="card-text">

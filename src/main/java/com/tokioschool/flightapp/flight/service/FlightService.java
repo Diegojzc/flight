@@ -15,10 +15,11 @@ public interface FlightService {
 
     FlightDTO getFlights(Long flightId);
 
-    FlightDTO createdFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
+    FlightDTO createFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
 
     FlightDTO editFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
 
     Map<Long, FlightDTO> getFlightById(HashSet<Long> flightIds);
 
+    FlightDTO getFlight(Long aLong);
 }

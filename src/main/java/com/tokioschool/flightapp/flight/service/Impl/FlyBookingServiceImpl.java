@@ -1,8 +1,8 @@
 package com.tokioschool.flightapp.flight.service.Impl;
 
-import com.tokioschool.flightapp.flight.domain.Flight;
-import com.tokioschool.flightapp.flight.domain.FlightBooking;
-import com.tokioschool.flightapp.flight.domain.User;
+import com.tokioschool.flightapp.flight.entities.FlightEntity;
+import com.tokioschool.flightapp.flight.entities.FlightBookingEntity;
+import com.tokioschool.flightapp.flight.entities.UserEntity;
 import com.tokioschool.flightapp.flight.dto.FlightBookingDTO;
 import com.tokioschool.flightapp.flight.repository.FlightRepository;
 import com.tokioschool.flightapp.flight.repository.UserRepository;
@@ -27,19 +27,19 @@ public class FlyBookingServiceImpl implements FlightBookingService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public FlightBookingDTO  bookFlight(Long flightId, String userId) {
 
-        Flight flight = flightRepository.findById(flightId)
+        FlightEntity flight = flightRepository.findById(flightId)
                 .orElseThrow(() -> new IllegalArgumentException("flight with id:%s not found".formatted(flightId)));
 
-        User user = userRepository.findById(userId)
+        UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("user with id:%s not found".formatted(userId)));
 
-        if (flight.getOcuppancy() >= flight.getOcuppancy()) {
+        if (flight.getOccupancy() >= flight.getOccupancy()) {
             throw new IllegalStateException("Flight with id%s without free places".formatted(flightId));
         }
-            FlightBooking flightBooking = FlightBooking.builder()
+            FlightBookingEntity flightBooking = FlightBookingEntity.builder()
                     .user(user).flight(flight).locator(UUID.randomUUID()).build();
             flight.getBooking().add(flightBooking);
-            flight.setOcuppancy(flight.getOcuppancy() + 1);
+            flight.setOccupancy(flight.getOccupancy() + 1);
             flightRepository.save(flight);
             return modelMapper.map(flightBooking, FlightBookingDTO.class);
 
