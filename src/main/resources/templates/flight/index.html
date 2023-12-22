@@ -1,18 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
 
-<head th:replace="~{flight/fragments/head :: header('FlightApp')}"><title>title</title></head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
 
+    <title>Flights</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+          crossorigin="anonymous">
+    <style>
+        h1 {
+            margin: 1%;
+        }
+        p {
+            margin: 1%;
+        }
+    </style>
+</head>
 <body>
 
-<nav th:replace="~{flight/fragments/nav}"></nav>
+<div class="jumbotron">
+    <h1>Bienvenido a Flights</h1>
+    <p>En esta página podrás reservar vuelos</p>
+    <p>
+        <a th:href="@{/flight}">Vuelos</a>
+    </p>
 
-<div class="container">
-    <div class="row py-5">
-        <h2 class="border-bottom"> Flight Web Application</h2>
-    </div>
+
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
 
-<script th:replace="~{flight/fragments/scripts}"></script>
+</script>
+
 </body>
 </html>
