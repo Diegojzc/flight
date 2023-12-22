@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="/flight")
-public class IndexMvcController {
+public class HomeMvcController {
 
     @GetMapping
     public String getIndex(){
