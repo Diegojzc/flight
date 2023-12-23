@@ -12,6 +12,11 @@ public class HomeMvcController {
     public String getIndex(){
         return "flight/index";
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "flight/home";
+    }
     @GetMapping("/my-error")
     public String getMyError(){
         throw new RuntimeException("This is an error");
