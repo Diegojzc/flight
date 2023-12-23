@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{flight/fragments/head :: header('FlightApp')}"><title>title</title></head>
-
+<title>Formulario de Vuelo</title>
 <body>
 
 <nav th:replace="~{flight/fragments/nav}"></nav>
@@ -12,6 +12,32 @@
         <h2 class="border-bottom"> Flight Web Application</h2>
     </div>
 </div>
+<h2>Formulario de Vuelo</h2>
+
+<form action="#" th:action="@{/procesarFormulario}" th:object="${vuelo}" method="post">
+    <label for="salida">Aeropuerto de Salida:</label>
+    <input type="text" id="salida" name="salida" th:field="*{salida}" required>
+    <br>
+
+    <label for="llegada">Aeropuerto de Llegada:</label>
+    <input type="text" id="llegada" name="llegada" th:field="*{llegada}" required>
+    <br>
+
+    <label for="fecha">Fecha de Vuelo:</label>
+    <input type="text" id="fecha" name="fecha" th:field="*{fecha}" class="flatpickr" required>
+    <br>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr(".flatpickr", {
+        enableTime: false,
+        dateFormat: "Y-m-d"
+    });
+</script>
+
 
 <script th:replace="~{flight/fragments/scripts}"></script>
 </body>

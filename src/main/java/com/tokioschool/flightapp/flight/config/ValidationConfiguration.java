@@ -21,4 +21,8 @@ public class ValidationConfiguration {
         return localValidatorFactoryBean;
 
     }
+
+    public MessageSource getMessageSource() {
+        return messageSource;
+    }
 }
