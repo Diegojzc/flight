@@ -87,6 +87,7 @@ public class FlightMvcController {
         return new ModelAndView("redirect:/flight/flights");
    }
 
+
     private ModelAndView populateCreationOrEditFlightModel(FlightMvcDTO flightMvcDTO, @NonNull FlightDTO flightDTO, Model model) {
         List<AirportDTO>airports=airportService.getAirports();
         ModelAndView modelAndView=new ModelAndView();
