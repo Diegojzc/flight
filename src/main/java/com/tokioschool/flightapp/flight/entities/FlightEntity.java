@@ -16,8 +16,7 @@ import java.util.Set;
 @Table(name = "flights")
 public class FlightEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
     @CreationTimestamp
     private LocalDateTime created;
@@ -42,6 +41,7 @@ public class FlightEntity {
 
     @Column(nullable = false)
     private int occupancy;
+
 
     @OneToMany(mappedBy = "flight",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<FlightBookingEntity> booking;
